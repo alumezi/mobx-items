@@ -1,7 +1,13 @@
 import { observable, computed, autorun, decorate } from 'mobx'
 
 export default class ObservableTodoStore {
-  todos = []
+  todos = [
+    {
+      task: 'first todo',
+      completed: false,
+      assignee: null
+    }
+  ]
   pendingRequests = 0
 
   constructor () {
