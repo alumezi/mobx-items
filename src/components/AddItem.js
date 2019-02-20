@@ -1,16 +1,17 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { observer } from 'mobx-react'
 
-class AddItem extends Component {
-  render () {
-    const { submit, change, value } = this.props
-    return (
-      <form onSubmit={submit}>
-        <input type='text' onChange={change} value={value} />
-        <input type='submit' value='Submit' />
-      </form>
-    )
-  }
-}
+const AddItem = observer(['store'], ({ store }) => {
+  return (
+    <form onSubmit={store.submitNewTodo}>
+      <input
+        type='text'
+        onChange={store.changeNewItemInput}
+        value={store.newItemInput}
+      />
+      <input type='submit' value='Submit' />
+    </form>
+  )
+})
 
-export default observer(AddItem)
+export default AddItem
