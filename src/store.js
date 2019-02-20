@@ -1,4 +1,4 @@
-import { observable, computed, autorun, decorate } from 'mobx'
+import { observable, computed, autorun, decorate, action } from 'mobx'
 
 export default class ObservableTodoStore {
   todos = [
@@ -9,6 +9,7 @@ export default class ObservableTodoStore {
     }
   ]
   pendingRequests = 0
+  newItemInput = ''
 
   constructor () {
     autorun(() => console.log(this.report))
@@ -33,11 +34,23 @@ export default class ObservableTodoStore {
       assignee: null
     })
   }
+
+  submitNewTodo = event => {
+    event.preventDefault()
+    this.addTodo(this.newItemInput)
+  }
+
+  changeNewItemInput = event => {
+    this.newItemInput = event.target.value
+  }
 }
 
 decorate(ObservableTodoStore, {
   todos: observable,
   pendingRequests: observable,
+  newItemInput: observable,
   completedTodosCount: computed,
-  report: computed
+  report: computed,
+  changeNewItemInput: action,
+  submitNewTodo: action
 })
