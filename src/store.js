@@ -38,6 +38,7 @@ export default class ObservableTodoStore {
   submitNewTodo = event => {
     event.preventDefault()
     this.addTodo(this.newItemInput)
+    this.newItemInput = ''
   }
 
   changeNewItemInput = event => {
