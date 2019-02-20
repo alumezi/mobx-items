@@ -3,23 +3,31 @@ import Item from './components/Item'
 import AddItem from './components/AddItem'
 import { observer } from 'mobx-react'
 import './App.css'
+import DevTools from 'mobx-react-devtools'
 
 class App extends Component {
-  state = this.props.store
-
-  onNewTodo = () => {
-    this.props.store.addTodo(prompt('Enter a new todo:', 'coffee plz'))
-  }
-
   render () {
+    const {
+      submitNewTodo,
+      changeNewItemInput,
+      newItemInput,
+      todos,
+      completedTodosCount
+    } = this.props.store
     return (
       <div className='App App-header'>
-        {this.state.todos.map(item => (
+        <DevTools />
+        {todos.map(item => (
           <Item todo={item} key={item.task} />
         ))}
         <div>
-          <AddItem onSubmit={this.onNewTodo} />
+          <AddItem
+            change={changeNewItemInput}
+            submit={submitNewTodo}
+            value={newItemInput}
+          />
         </div>
+        {completedTodosCount}
       </div>
     )
   }

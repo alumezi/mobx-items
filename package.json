@@ -25,6 +25,7 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "@babel/plugin-proposal-decorators": "^7.3.0"
+    "@babel/plugin-proposal-decorators": "^7.3.0",
+    "mobx-react-devtools": "^6.0.3"
   }
 }
